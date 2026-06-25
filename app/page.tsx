@@ -1,4 +1,5 @@
 import Image from "next/image";
+import ClassCalendar from "./components/ClassCalendar";
 import HeroCarousel from "./components/HeroCarousel";
 import RevealCard from "./components/RevealCard";
 import SectionCard from "./components/SectionCard";
@@ -128,6 +129,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <ClassCalendar />
 
       <section className="bg-stone-100 px-4 py-16 sm:px-6">
         <div className="mx-auto max-w-6xl">

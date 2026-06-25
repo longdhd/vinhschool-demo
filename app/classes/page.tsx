@@ -73,7 +73,10 @@ export default function Classes() {
                   "Muốn nhận phản hồi trực tiếp từ giáo viên",
                   "Sống gần Garden Grove / Orange County",
                 ].map((item) => (
-                  <li key={item} className="rounded-3xl bg-purple-100 p-5 shadow-sm">
+                  <li
+                    key={item}
+                    className="rounded-3xl bg-purple-100 p-5 shadow-sm"
+                  >
                     ✓ {item}
                   </li>
                 ))}
@@ -89,7 +92,7 @@ export default function Classes() {
             <h2 className="text-3xl font-semibold text-slate-900">
               Học Qua Zoom
             </h2>
-            <p className="mt-4 text-slate-600">
+            <p className="mt-4 text-xl text-slate-600">
               Lớp Zoom giúp bạn học từ xa với chất lượng giảng dạy tương đương,
               bài tập và kiểm tra định kỳ.
             </p>
@@ -125,7 +128,10 @@ export default function Classes() {
                   "Muốn học tập linh hoạt tại nhà",
                   "Muốn tiếp tục luyện thi dù ở xa",
                 ].map((item) => (
-                  <li key={item} className="rounded-3xl bg-amber-50 p-5 shadow-sm">
+                  <li
+                    key={item}
+                    className="rounded-3xl bg-amber-50 p-5 shadow-sm"
+                  >
                     ✓ {item}
                   </li>
                 ))}

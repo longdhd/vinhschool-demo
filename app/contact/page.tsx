@@ -9,8 +9,12 @@ export default function Contact() {
     courseType: "in-person",
     preferredTime: "evening",
     message: "",
+    website: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
+  const [startedAt, setStartedAt] = useState(() => Date.now());
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -22,19 +26,45 @@ export default function Contact() {
     }));
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => {
+    setSubmitting(true);
+    setSubmitted(false);
+    setError("");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...formData,
+          startedAt,
+        }),
+      });
+      const result = (await response.json()) as { error?: string };
+
+      if (!response.ok) {
+        setError(result.error || "Chưa thể gửi. Vui lòng thử lại sau.");
+        return;
+      }
+
       setFormData({
         name: "",
         phone: "",
         courseType: "in-person",
         preferredTime: "evening",
         message: "",
+        website: "",
       });
-      setSubmitted(false);
-    }, 3000);
+      setStartedAt(Date.now());
+      setSubmitted(true);
+    } catch {
+      setError("Chưa thể gửi. Vui lòng kiểm tra kết nối và thử lại.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -105,7 +135,25 @@ export default function Contact() {
                 <p>Chúng tôi sẽ liên hệ bạn trong thời gian sớm nhất.</p>
               </div>
             )}
+            {error && (
+              <div className="rounded-[2rem] border border-red-600/20 bg-red-50 p-4 mb-6 text-red-800">
+                <p className="font-semibold">{error}</p>
+              </div>
+            )}
             <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="hidden" aria-hidden="true">
+                <label>
+                  Website
+                  <input
+                    type="text"
+                    name="website"
+                    value={formData.website}
+                    onChange={handleChange}
+                    tabIndex={-1}
+                    autoComplete="off"
+                  />
+                </label>
+              </div>
               <div>
                 <label className="block text-lg font-semibold mb-2 ">Tên Của Bạn *</label>
                 <input
@@ -170,9 +218,10 @@ export default function Contact() {
               </div>
               <button
                 type="submit"
-                className="w-full rounded-3xl bg-[#1dd2d0] py-4 text-lg font-bold text-slate-950 transition hover:bg-[#16b4ae]"
+                disabled={submitting}
+                className="w-full rounded-3xl bg-[#1dd2d0] py-4 text-lg font-bold text-slate-950 transition hover:bg-[#16b4ae] disabled:cursor-not-allowed disabled:opacity-70"
               >
-                Gửi Đơn Đăng Ký
+                {submitting ? "Đang gửi..." : "Gửi Đơn Đăng Ký"}
               </button>
             </form>
             <p className="text-sm text-zinc-900 mt-4 text-center">*Bắt buộc điền</p>

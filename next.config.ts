@@ -7,7 +7,7 @@ const contentSecurityPolicy = [
   "img-src 'self' data: blob: https://static.wixstatic.com https://www.njhs.us https://i.ebayimg.com https://encrypted-tbn0.gstatic.com",
   "font-src 'self' data:",
   "media-src 'self' https://video.wixstatic.com",
-  "frame-src https://video.wixstatic.com",
+  "frame-src https://video.wixstatic.com https://calendar.google.com",
   "connect-src 'self'",
   "object-src 'none'",
   "base-uri 'self'",
