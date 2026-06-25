@@ -19,14 +19,14 @@ export default function About() {
       </section>
 
       <section className="py-16 px-4 sm:px-6 bg-cyan-50">
-        <div className="max-w-5xl mx-auto grid gap-8 rounded-[2rem] border border-cyan-200 bg-white p-6 shadow-[0_30px_60px_rgba(15,23,42,0.16)] sm:p-10 md:grid-cols-[0.8fr_1.2fr] md:items-center">
-          <div className="group relative aspect-[4/5] overflow-hidden rounded-[1.25rem] border border-cyan-100 bg-cyan-950 shadow-xl">
+        <div className="max-w-6xl mx-auto grid gap-8 rounded-[2rem] border border-cyan-200 bg-white p-6 shadow-[0_30px_60px_rgba(15,23,42,0.16)] sm:p-10 md:grid-cols-[0.8fr_1.2fr] md:items-center">
+          <div className="group relative aspect-3/4 overflow-hidden rounded-[1.25rem] border border-cyan-100 bg-cyan-950 shadow-xl">
             <Image
               src={bioPhotoUrl}
               alt="Vinh Nguyen"
               fill
               sizes="(max-width: 768px) 100vw, 360px"
-              className="object-cover object-center transition-transform duration-500 ease-out group-hover:scale-110"
+              className="object-cover scale-150 object-scale object-center transition-transform duration-500 ease-out group-hover:scale-[1.75]"
             />
           </div>
           <div>
