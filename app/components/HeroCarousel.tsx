@@ -36,7 +36,7 @@ export default function HeroCarousel({ images, interval = 4500 }: Props) {
             fill
             priority={i === 0}
             fetchPriority={i === 0 ? "high" : "auto"}
-            quality={70}
+            quality={75}
             sizes="100vw"
             className={`absolute inset-0 h-full w-full object-contain transition-opacity duration-700 ${
               i === index ? "opacity-100" : "opacity-0"
