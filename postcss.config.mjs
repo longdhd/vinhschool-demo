@@ -1,6 +1,10 @@
 const config = {
   plugins: {
-    "@tailwindcss/postcss": {},
+    "@tailwindcss/postcss": {
+      fonts: {
+        montserrat: ["Montserrat", "sans-serif"],
+      },
+    },
   },
 };
 
